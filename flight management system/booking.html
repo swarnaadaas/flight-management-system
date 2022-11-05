@@ -11,6 +11,7 @@
   <!-- Bootstrap CSS v5.2.1 -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+
 </head>
 
 <body>
@@ -59,7 +60,7 @@
       <style>
         body{
           /* background-color: lightblue; */
-          background-image: url(booking.jpg);
+          background-image: url(booking.jfif);
           background-size: cover;
         }
           form {
@@ -124,7 +125,7 @@
     }
   }
       </style>    
-      <form action="login.html" method="post" onsubmit="validateform(event)" id="bookingform" name="bookingform">
+      <form id="bookingform" name="bookingform" action="login.html" method="post" onsubmit="validateform(event)">
         <h2><center>Book Here</center></h2>
           <div class="imgcontainer">
           </div>
@@ -165,22 +166,27 @@
     function validateform(e){
     var pick=document.forms['bookingform']['pick'].value;  
     var desti=document.forms['bookingform']['desti'].value;  
-     // alert(uname);
      e.preventDefault();
+     var isValid = true;
      if(pick==""){
          alert("Enter your pickup point!");
+         isValid = false;  
          return false;  
        }
       if(desti==""){  
        alert("Enter your destination place!");
+       isValid = false;  
        return false;  
-       }   
-       if(pick="desti"){  
+       } 
+      if(pick==desti){  
       alert("pickup point & distination point must not be same!");
+      isValid = false;  
       return false;  
-      }  
-       return true;
-     }  
+      }   
+      if(isValid){
+        document.forms['bookingform'].submit();
+      }     
+   }  
      </script>
 </body>
 
