@@ -1,0 +1,48 @@
+-------------------------
+FLIGHT MANAGEMENT SYSTEM
+-------------------------
+
+create database fms;
+use fms;
+
+create table tbl_flight
+(flight_no int primary key auto_increment,
+flight_name varchar(50),
+flight_des varchar(200),
+flight_cap int
+);
+
+create table tbl_passenger
+(p_id int primary key auto_increment,
+name varchar(50),
+user_name varchar(50),
+email varchar(50),
+password varchar(50),
+mobile int,
+address varchar(100),
+dob date
+);
+
+create table tbl_schedule
+(s_id int primary key auto_increment,
+flight_from varchar(50),
+flight_to varchar(50),
+flight_date date,
+flight_time time,
+cost int,
+flight_no int, foreign key(flight_no) references tbl_flight(flight_no) ,
+dob date
+);
+
+create table tbl_bticket
+(ticket_no int primary key auto_increment,
+booking_date date,
+travel_date date,
+flight_no int, foreign key(flight_no) references tbl_flight(flight_no) ,
+flight_from varchar(50),
+flight_to varchar(50),
+flight_time time,
+boarding_time time,
+flight_seat int,
+p_id int, foreign key(p_id) references tbl_passenger(p_id)
+);
